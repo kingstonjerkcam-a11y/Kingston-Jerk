@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mr. Jerk – Authentic Jamaican Jerk | UK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#ff6600;
+      --dark:#111;
+      --light:#fff9f2;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+    body{background:var(--light);color:var(--dark);line-height:1.6}
+    header{
+      background:url('hero-jerk.jpg') center/cover no-repeat;
+      height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;color:var(--light);position:relative;
+    }
+    header::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    header *{z-index:2}
+    h1{font-size:2.8rem;margin-bottom:.5rem;text-shadow:2px 2px 8px #000}
+    .btn{
+      background:var(--accent);color:#fff;padding:.75rem 1.8rem;border:none;border-radius:4px;
+      font-size:1.1rem;cursor:pointer;transition:.25s
+    }
+    .btn:hover{filter:brightness(1.15)}
+    nav{
+      position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1);
+      display:flex;justify-content:center;gap:2rem;padding:1rem;z-index:10
+    }
+    nav a{text-decoration:none;color:var(--dark);font-weight:500}
+    section{padding:4rem 1rem;max-width:900px;margin:auto}
+    h2{margin-bottom:1.2rem;font-size:2rem}
+    .menu-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .menu-card{background:#fff;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:1.2rem;text-align:center}
+    .menu-card img{width:100%;height:160px;object-fit:cover;border-radius:4px;margin-bottom:.8rem}
+    .gallery{display:flex;gap:1rem;overflow-x:auto;padding-bottom:1rem}
+    .gallery img{height:220px;border-radius:6px}
+    form{display:grid;gap:1rem}
+    input,textarea,select{width:100%;padding:.7rem;border:1px solid #ccc;border-radius:4px}
+    footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 1rem;font-size:.9rem}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mr. Jerk</h1>
+  <p>Authentic Jamaican Jerk – smoked low &amp; slow in the UK</p>
+  <br>
+  <button class="btn" onclick="document.getElementById('order').scrollIntoView()">Pre-Order Now</button>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#menu">Menu</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#order">Pre-Order</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Mr. Jerk</h2>
+  <p>We’re a small family-run pop-up bringing real Jamaican jerk to the UK.  
+     Marinated 24 h in our secret spice blend, then cooked over pimento wood for that unmistakable island flavour.  
+     Everything is pre-ordered so we cook exactly what you need – nothing wasted, everything fresh.</p>
+</section>
+
+<section id="menu">
+  <h2>Menu</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="jerk-chicken.jpg" alt="Jerk Chicken">
+      <h3>Jerk Chicken</h3>
+      <p>½ chicken, festival &amp; slaw</p>
+      <strong>£9</strong>
+    </div>
+    <div class="menu-card">
+      <img src="jerk-pork.jpg" alt="Jerk Pork">
+      <h3>Jerk Pork</h3>
+      <p>250 g sliced shoulder, festival &amp; slaw</p>
+      <strong>£10</strong>
+    </div>
+    <div class="menu-card">
+      <img src="vegan-jack.jpg" alt="Vegan Jackfruit">
+      <h3>Vegan Jackfruit Jerk</h3>
+      <p>With rice &amp; peas and slaw</p>
+      <strong>£8</strong>
+    </div>
+    <div class="menu-card">
+      <img src="festival.jpg" alt="Extra Festival">
+      <h3>Extra Festival (2)</h3>
+      <p>Sweet fried dumplings</p>
+      <strong>£2</strong>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="g1.jpg" alt="Smoke pit">
+    <img src="g2.jpg" alt="Plated chicken">
+    <img src="g3.jpg" alt="Pork shoulder">
+    <img src="g4.jpg" alt="Festival">
+  </div>
+</section>
+<section id="order">
+  <h2>Pre-Order &amp; Pay</h2>
+  <p>Pick-up Saturday 4-7 pm – location emailed on checkout.</p>
+
+  <table id="basket" style="width:100%;border-collapse:collapse;margin-bottom:1rem">
+    <thead>
+      <tr>
+        <td><strong>Item</strong></td>
+        <td><strong>Price</strong></td>
+        <td><strong>Qty</strong></td>
+        <td><strong>Total</strong></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button class="btn" id="addItem">+ Add another item</button>
+  <button class="btn" id="checkoutBtn" style="background:#0044cc;margin-left:1rem">Checkout &amp; Pay</button>
+  <div id="total" style="margin:1rem 0;font-weight:bold">Total: £0.00</div>
+
+  <form id="custForm" style="margin-top:1.5rem;display:none">
+    <label>Your Name * <input name="name" required></label>
+    <label>Email * <input type="email" name="email" required></label>
+    <label>Phone * <input type="tel" name="phone" required></label>
+    <label>Any notes? <textarea name="notes" rows="3"></textarea></label>
+    <button class="btn" type="submit">Pay with Stripe</button>
+  </form>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Instagram: <a href="https://instagram.com/mr_jerk_uk" target="_blank">@mr_jerk_uk</a><br>
+     Email: <a href="mailto:hello@mrjerk.uk">hello@mrjerk.uk</a><br>
+     Phone: 07912 345 678</p>
+</section>
+
+<footer>
+  © 2025 Mr. Jerk – UK registered food business.
+</footer>
+
+<!-- Stripe -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('pk_test_51SffoXLFGDxm5MxXwKaHg4BP7RQHoa8KAVhQi0aUWWAdrdHhvxDV4lx25TRLiDQjdf0x5HjnD5AAYy7FBH9AcSfS00m1FyR0fN');
+
+ </script>
+<script>
+/* ---- simple basket ---- */
+const menu=[
+  {id:'jc', name:'Jerk Chicken', price:900},
+  {id:'jp', name:'Jerk Pork',    price:1000},
+  {id:'vj', name:'Vegan Jack',   price:800},
+  {id:'ef', name:'Extra Festival',price:200}
+];
+const $=s=>document.querySelector(s);
+const tbody=$('#basket tbody');
+let rows=0;
+
+function addRow(){
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><select name="item">${menu.map(m=>`<option value="${m.id}">${m.name}</option>`).join('')}</select></td>
+    <td data-price>${menu[0].price/100}</td>
+    <td><input type="number" min="1" max="10" value="1" name="qty" style="width:60px"></td>
+    <td data-line>${menu[0].price/100}</td>
+    <td><button type="button" onclick="this.parentElement.parentElement.remove();updateTotals()">✕</button></td>`;
+  tbody.appendChild(tr);
+  rows++;
+  tr.querySelector('select').addEventListener('change',e=>{
+    const p=menu.find(x=>x.id===e.target.value).price;
+    tr.querySelector('[data-price]').textContent=(p/100).toFixed(2);
+    updateTotals();
+  });
+  tr.querySelector('input').addEventListener('input',updateTotals);
+  updateTotals();
+}
+function updateTotals(){
+  let gbp=0;
+  tbody.querySelectorAll('tr').forEach(r=>{
+    const id=r.querySelector('select').value,
+          qty=parseInt(r.querySelector('input').value),
+          p=(menu.find(m=>m.id===id).price||0);
+    const line=p*qty;
+    r.querySelector('[data-line]').textContent='£'+(line/100).toFixed(2);
+    gbp+=line;
+  });
+  $('#total').textContent='Total: £'+(gbp/100).toFixed(2);
+  return gbp;
+}
+$('#addItem').onclick=()=>addRow();
+addRow(); // start with one row
+
+/* ---- send to server ---- */
+$('#custForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const lines=[...tbody.querySelectorAll('tr')].map(r=>({
+      id:r.querySelector('select').value,
+      qty:parseInt(r.querySelector('input').value)
+  })).filter(x=>x.qty);
+  if(!lines.length){alert('Add at least one item');return;}
+  const total=updateTotals();
+  const cust=Object.fromEntries(new FormData(e.target));
+  const resp=await fetch('/.netlify/functions/create-checkout',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({lines,total,cust})
+  });
+  const{url}=await resp.json();
+  window.location=url;
+});
+$('#checkoutBtn').onclick = () => $('#custForm').style.display = 'block';
+</script>
+
+</body>
+</html>
