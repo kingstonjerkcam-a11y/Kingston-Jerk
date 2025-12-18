@@ -200,14 +200,18 @@ $('#addItem').onclick=()=>addRow();
 addRow(); // start with one row
 
 /* ---- send to server ---- */
-$('#custForm').addEventListener('submit',async(e)=>{
+/* ---- umbrella checkout ---- */
+$('#custForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const lines=[...tbody.querySelectorAll('tr')].map(r=>({
-      id:r.querySelector('select').value,
-      qty:parseInt(r.querySelector('input').value)
-  })).filter(x=>x.qty);
-  if(!lines.length){alert('Add at least one item');return;}
-  const total=updateTotals();
+  const totalPence = updateTotals();               // basket total in pence
+  const qty = Math.round(totalPence / 100);        // £1 units
+  if (!qty) { alert('Add at least one item'); return; }
+  const cust = Object.fromEntries(new FormData(e.target));
+  // build URL with quantity + customer email pre-filled
+  const base = 'https://buy.stripe.com/test_7sY28s86kfcN7iTcGwdUY04';
+  const url = `${base}?quantity=${qty}&prefilled_email=${encodeURIComponent(cust.email)}`;
+  window.location = url;                           // go to Stripe
+});
   const cust=Object.fromEntries(new FormData(e.target));
   const resp=await fetch('/.netlify/functions/create-checkout',{
     method:'POST',
