@@ -201,18 +201,15 @@ addRow(); // start with one row
 
 /* ---- send to server ---- */
 
-/* ---- umbrella checkout ---- */
+//* ---- umbrella checkout ---- */
 $('#custForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const totalPence = updateTotals();               // basket total in pence
-  const qty = Math.round(totalPence / 100);        // £1 units
+  const totalPence = updateTotals();
+  const qty = Math.round(totalPence / 100);
   if (!qty) { alert('Add at least one item'); return; }
   const cust = Object.fromEntries(new FormData(e.target));
-  // build URL with quantity + customer email pre-filled
-  const base = 'https://buy.stripe.com/test_7sY28s86kfcN7iTcGwdUY04';
-  const url = `${base}?
-quantity=${qty}&prefilled_email=${encodeURIComponent(cust.email)}`;
-  window.location = url;                           // go to Stripe
+  const url = `https://buy.stripe.com/test_7sY28s86kfcN7iTcGwdUY04?quantity=${qty}&prefilled_email=${encodeURIComponent(cust.email)}`;
+  window.location = url;
 });
 
 $('#checkoutBtn').onclick = () => $('#custForm').style.display = 'block';
