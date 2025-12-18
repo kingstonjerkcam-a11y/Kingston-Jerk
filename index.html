@@ -212,13 +212,7 @@ $('#custForm').addEventListener('submit', async (e) => {
   const url = `${base}?quantity=${qty}&prefilled_email=${encodeURIComponent(cust.email)}`;
   window.location = url;                           // go to Stripe
 });
-  const cust=Object.fromEntries(new FormData(e.target));
-  const resp=await fetch('/.netlify/functions/create-checkout',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({lines,total,cust})
-  });
-  const{url}=await resp.json();
+
   window.location=url;
 });
 $('#checkoutBtn').onclick = () => $('#custForm').style.display = 'block';
